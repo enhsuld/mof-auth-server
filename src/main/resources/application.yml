@@ -3,7 +3,7 @@ spring:
     name: oauth-server
 
 server:
-  port: 8081
+  port: 8071
   context-path: /spring-security-oauth-server
 
 eureka:
@@ -11,6 +11,6 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8751/eureka/
   instance:
     hostname: localhost
