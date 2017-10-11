@@ -39,10 +39,10 @@ public class UserController {
         return "LutUser created";
     }
 
-    @GetMapping(value = "/users")
+   /* @GetMapping(value = "/users")
     public List<TcUser> users(){
         return userService.getAllUsers();
-    }
+    }*/
 
     @GetMapping(value = "/api/user")
     public TcUser user(){

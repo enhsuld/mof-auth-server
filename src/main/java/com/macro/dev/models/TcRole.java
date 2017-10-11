@@ -16,8 +16,7 @@ public class TcRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="TC_ROLE_ROLEID_GENERATOR", sequenceName="TC_ROLE_ROLEID_GENERATOR",allocationSize=1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator="TC_ROLE_ROLEID_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ROLE_ID")
 	private Long roleId;
 
@@ -46,8 +45,8 @@ public class TcRole implements Serializable {
 	private String useYn;
 
 	//bi-directional many-to-one association to TcUserRole
-	@OneToMany(mappedBy="tcRole")
-	private List<TcUserRole> tcUserRoles;
+/*	@OneToMany(mappedBy="tcRole")
+	private List<TcUserRole> tcUserRoles;*/
 
 
 
@@ -130,11 +129,11 @@ public class TcRole implements Serializable {
 		this.useYn = useYn;
 	}
 
-	public List<TcUserRole> getTcUserRoles() {
+/*	public List<TcUserRole> getTcUserRoles() {
 		return tcUserRoles;
 	}
 
 	public void setTcUserRoles(List<TcUserRole> tcUserRoles) {
 		this.tcUserRoles = tcUserRoles;
-	}
+	}*/
 }

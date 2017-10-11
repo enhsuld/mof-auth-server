@@ -44,16 +44,16 @@ public class UserService {
         roleRepository.save(role);
     }
 
-    public List<TcUser> getAllRoles() {
+   /* public List<TcUser> getAllRoles() {
         return userRepository.findAll();
-    }
+    }*/
 
     public TcUser getUser(String username){
         return userRepository.findByUsername(username);
     }
 
-    public List<TcUser> getAllUsers() {
+    /*public List<TcUser> getAllUsers() {
         return userRepository.findAll();
-    }
+    }*/
 
 }

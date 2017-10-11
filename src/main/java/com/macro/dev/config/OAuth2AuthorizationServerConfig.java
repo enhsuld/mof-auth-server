@@ -136,7 +136,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         sessionFactoryBean.setDataSource(dataSource());
         sessionFactoryBean.setPackagesToScan("com.macro.dev.models");
         Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
         hibernateProperties.put("hibernate.show_sql", "true");
         // hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.put("hibernate.enable_lazy_load_no_trans", "true");
@@ -144,9 +144,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         hibernateProperties.put("jadira.usertype.autoRegisterUserTypes", "true");
         hibernateProperties.put("jadira.usertype.javaZone", "UTC");
         hibernateProperties.put("jadira.usertype.databaseZone", "UTC");
-
         sessionFactoryBean.setHibernateProperties(hibernateProperties);
-
         return sessionFactoryBean;
     }*/
 }

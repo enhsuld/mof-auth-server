@@ -1,5 +1,7 @@
 package com.macro.dev.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -16,8 +18,7 @@ public class TcUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="TC_USER_USERID_GENERATOR", sequenceName="TC_USER_USERID_GENERATOR",allocationSize=1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator="TC_USER_USERID_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	@Column(name="USER_ID")
 	private Long userId;
@@ -81,9 +82,12 @@ public class TcUser implements Serializable {
 	private TcOrg tcOrg;
 
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "tc_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private List<TcRole> roles;
 	//bi-directional many-to-one association to TcUserRole
-	@OneToMany(mappedBy="tcUser",fetch = FetchType.EAGER , cascade = CascadeType.ALL)
-	private List<TcUserRole> tcUserRoles;
+	/*@OneToMany(mappedBy="tcUser", fetch = FetchType.EAGER)
+	private List<TcUserRole> tcUserRoles;*/
 
 	public TcUser() {
 	}
@@ -256,11 +260,19 @@ public class TcUser implements Serializable {
 		this.tcOrg = tcOrg;
 	}
 
-	public List<TcUserRole> getTcUserRoles() {
+	public List<TcRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<TcRole> roles) {
+		this.roles = roles;
+	}
+
+	/*public List<TcUserRole> getTcUserRoles() {
 		return tcUserRoles;
 	}
 
 	public void setTcUserRoles(List<TcUserRole> tcUserRoles) {
 		this.tcUserRoles = tcUserRoles;
-	}
+	}*/
 }

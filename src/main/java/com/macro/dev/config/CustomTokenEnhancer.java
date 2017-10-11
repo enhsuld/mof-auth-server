@@ -23,8 +23,10 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         final Map<String, Object> additionalInfo = new HashMap<>();
         TcUser usr=userService.getUser(authentication.getName());
         additionalInfo.put("username", authentication.getName());
-        additionalInfo.put("organizationId", usr.getTcOrg().getOrgCd());
-        additionalInfo.put("organization", usr.getTcOrg().getOrgNm());
+        if(usr!=null){
+            additionalInfo.put("organization", usr.getTcOrg().getOrgNm());
+        }
+
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
         return accessToken;
     }

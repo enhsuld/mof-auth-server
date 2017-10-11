@@ -17,8 +17,7 @@ public class TcOrg implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="TC_ORG_ORGCD_GENERATOR", sequenceName="TC_ORG_ORGCD_GENERATOR",allocationSize=1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator="TC_ORG_ORGCD_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ORG_CD")
 	private Long orgCd;
 

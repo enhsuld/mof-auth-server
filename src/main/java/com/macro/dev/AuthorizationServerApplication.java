@@ -8,6 +8,7 @@ import com.macro.dev.repositories.OrgRepository;
 import com.macro.dev.repositories.UserRepository;
 import com.macro.dev.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
@@ -31,11 +32,9 @@ public class AuthorizationServerApplication extends SpringBootServletInitializer
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
     @Autowired
-    public void authenticationManager(AuthenticationManagerBuilder builder, UserRepository repository, OrgRepository orep, UserService userService) throws Exception {
+    public void authenticationManager(AuthenticationManagerBuilder auth, UserRepository repository, OrgRepository orep, UserService userService) throws Exception {
         if (repository.count()==0 && orep.count()==0) {
-
 
             TcOrg org = new TcOrg();
             org.setOrgNm("gcomm");
@@ -53,7 +52,8 @@ public class AuthorizationServerApplication extends SpringBootServletInitializer
 
 
         }
-        builder.userDetailsService(userDetailsService(repository)).passwordEncoder(passwordEncoder);
+      //  auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsService(repository)).passwordEncoder(passwordEncoder);
     }
 
     private UserDetailsService userDetailsService(final UserRepository repository) {
